@@ -1,0 +1,48 @@
+﻿<Application x:Class="WpfBookShopApp.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:WpfBookShopApp"
+             xmlns:viewModels="clr-namespace:WpfBookShopApp.ViewModels"
+             xmlns:views="clr-namespace:WpfBookShopApp.Views">
+    
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Light.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Defaults.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Primary/MaterialDesignColor.DeepPurple.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Accent/MaterialDesignColor.Lime.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+
+            <DataTemplate DataType="{x:Type viewModels:PersonalAreaViewModel}">
+                <views:PersonalAreaView/>
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type viewModels:RegistrationViewModel}">
+                <views:RegistrationView/>
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type viewModels:LoginViewModel}">
+                <views:LoginView/>
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type viewModels:FavoritViewModel}">
+                <views:FavoritView/>
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type viewModels:ShopViewModel}">
+                <views:ShopView/>
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type viewModels:AddBookViewModel}">
+                <views:AddBookView/>
+            </DataTemplate>
+            
+            <DataTemplate DataType="{x:Type viewModels:AdminViewModel}">
+                <views:AdminView/>
+            </DataTemplate>
+
+
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

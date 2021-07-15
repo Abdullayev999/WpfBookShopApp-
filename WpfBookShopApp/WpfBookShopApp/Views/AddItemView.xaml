@@ -1,0 +1,39 @@
+﻿<Window x:Class="WpfBookShopApp.Views.AddItemView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfBookShopApp.Views"
+        mc:Ignorable="d"
+        Title="AddItemView" Height="400" Width="350">
+    <Window.Background>
+        <ImageBrush ImageSource="/Views/Resources/1.jpg"/>
+    </Window.Background>
+    <DockPanel>
+        <Label Height="40" VerticalContentAlignment="Center" HorizontalAlignment="Center" Background="Gray" FontSize="25"  VerticalAlignment="Center" Content="{Binding TableName}" DockPanel.Dock="Top"></Label>
+        <UniformGrid DockPanel.Dock="Bottom" Rows="0" Columns="3">
+            <Button Click="Cancel">Cancel</Button>
+            <Button Command="{Binding RemoveCommand}">Remove</Button>
+            <Button Command="{Binding AddCommand}" IsEnabled="{Binding IsEnable, UpdateSourceTrigger=PropertyChanged}">Add</Button>
+        </UniformGrid>
+        <Grid DockPanel.Dock="Bottom" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="30"/>
+                <ColumnDefinition Width="3*"/> 
+            </Grid.ColumnDefinitions> 
+            
+            <Label Height="35" Grid.Row="0" Grid.Column="0" FontSize="20" HorizontalAlignment="Left" VerticalAlignment="Center">Name :</Label>
+            <Label Visibility="{Binding VisName, UpdateSourceTrigger=PropertyChanged}" Height="30"  Grid.Row="0" Grid.Column="1"  FontWeight="Bold" Foreground="Red" HorizontalAlignment="Center" VerticalAlignment="Center">❗</Label>
+            <TextBox Height="35" Grid.Row="0" Grid.Column="2" Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}" FontSize="17" Margin="5" DockPanel.Dock="Right"></TextBox>
+
+        </Grid>
+        <ListBox SelectedItem="{Binding CurrentItem}" ItemsSource="{Binding Items}">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding Name}"></TextBlock>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+    </DockPanel>
+</Window>

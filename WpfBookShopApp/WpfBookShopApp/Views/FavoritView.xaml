@@ -1,0 +1,58 @@
+﻿<UserControl x:Class="WpfBookShopApp.Views.FavoritView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:WpfBookShopApp.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800" Name="win">
+    <UserControl.Background>
+        <ImageBrush ImageSource="/Views/Resources/4.jpg"/>
+    </UserControl.Background>
+    <DockPanel >
+        <DockPanel DockPanel.Dock="Top" LastChildFill="False" VerticalAlignment="Top">
+            <Label FontSize="20" DockPanel.Dock="Left">FullName :</Label>
+            <Label FontSize="20" Foreground="Red" Content="{Binding User.FullName, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Left"/>
+            <Label FontSize="20" DockPanel.Dock="Left">DateOfBith :</Label>
+            <Label FontSize="20" Foreground="Red" Content="{Binding User.DateOfBith}" DockPanel.Dock="Left"/>
+            <Label FontSize="20" Foreground="Red" Content="{Binding User.Gender}" DockPanel.Dock="Left"/>
+            <Button FontSize="20" Margin="5" Content="LogOut" Command="{Binding LogoutCommand}" DockPanel.Dock="Right"/>
+            <Label FontSize="20" DockPanel.Dock="Right">$</Label>
+            <Label FontSize="20"  DockPanel.Dock="Right" Foreground="Red" Content="{Binding User.Money, UpdateSourceTrigger=PropertyChanged}"/>
+            <Label FontSize="20"  DockPanel.Dock="Right">Moeny :</Label>
+        </DockPanel>
+
+        <UniformGrid DockPanel.Dock="Bottom" Columns="4">
+
+            <Button Command="{Binding PersonalAreaCommand}" Margin="5">Personal Area 💼</Button>
+            <Button Command="{Binding ShopCommand}" Margin="5">Shop 🛒</Button>
+            <Button IsEnabled="False" Margin="5">Buying Books</Button>
+            <Button Visibility="{Binding IsAdmin}" Command="{Binding AdminCommand}" Margin="5">Admin</Button>
+        </UniformGrid>
+        <Grid>
+            <ListBox ItemsSource="{Binding BuyingBooks}">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <UniformGrid Columns="4" Margin="5">
+
+                            <DockPanel>
+                                <TextBlock DockPanel.Dock="Bottom" FontSize="16" Text="{Binding Book.PublishYear, StringFormat=Year : 0}" HorizontalAlignment="Center" />
+                                <Image  Height="95" Source="Resources/book.png" />
+                            </DockPanel>
+                            <StackPanel Width="150" Margin="5">
+                                <TextBlock DockPanel.Dock="Bottom" FontSize="23" Text="{Binding Book.Name, StringFormat=Name : 0}" HorizontalAlignment="Center" />
+                                <TextBlock DockPanel.Dock="Bottom" FontSize="16" Text="{Binding Book.Quantity, StringFormat=Count : 0}" HorizontalAlignment="Center" />
+                                <TextBlock DockPanel.Dock="Bottom" FontSize="16" Text="{Binding Book.Pages, StringFormat=Pages : 0}" HorizontalAlignment="Center" />
+                                <TextBlock DockPanel.Dock="Bottom" FontSize="16" Text="{Binding Book.PrimeCost, StringFormat=Cost : 0}" HorizontalAlignment="Center" />
+                                <TextBlock DockPanel.Dock="Bottom" FontSize="16" Text="{Binding Book.SellCost, StringFormat=Cost : 0}" HorizontalAlignment="Center" />
+                            </StackPanel>
+                            <Button CommandParameter="{Binding Book.Id}" Command="{Binding ElementName=win ,Path=DataContext.RemoveCommand}" Width="100">🗑</Button>
+                            <Button CommandParameter="{Binding .}" Command="{Binding ElementName=win ,Path=DataContext.SellCommand}" Width="100">Sell 💸</Button>
+                        </UniformGrid>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </Grid>
+
+    </DockPanel>
+</UserControl>
